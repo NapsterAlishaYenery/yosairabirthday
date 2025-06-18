@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/yosaira-birthday/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
