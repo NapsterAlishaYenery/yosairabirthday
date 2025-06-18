@@ -1,13 +1,62 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>YosairaBirthday</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>Yosaira Birthday</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet">
+  </head>
+  <body>
+    <app-root></app-root>
+    <script>
+    const targetDate = new Date('2025-07-08T00:00:00-04:00');
+
+    function updateCountdown() {
+      const timeRemaining = getTimeRemaining(targetDate);
+
+      document.getElementById('days').textContent = padZero(timeRemaining.days);
+      document.getElementById('hours').textContent = padZero(timeRemaining.hours);
+      document.getElementById('minutes').textContent = padZero(timeRemaining.minutes);
+      document.getElementById('seconds').textContent = padZero(timeRemaining.seconds);
+
+      if (timeRemaining.total <= 0) {
+        stopCountdown();
+      }
+    }
+
+    function getTimeRemaining(date) {
+      const total = date.getTime() - new Date().getTime();
+      const seconds = Math.floor((total / 1000) % 60);
+      const minutes = Math.floor((total / 1000 / 60) % 60);
+      const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+      const days = Math.floor(total / (1000 * 60 * 60 * 24));
+
+      return {
+        total,
+        days,
+        hours,
+        minutes,
+        seconds
+      };
+    }
+
+    function padZero(value) {
+      return value.toString().padStart(2, '0');
+    }
+
+    function startCountdown() {
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
+
+    startCountdown();
+  </script>
+  </body>
 </html>
